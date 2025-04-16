@@ -1,18 +1,55 @@
 <template>
     <div class="frage">
-        <h1> Frage </h1>
+        <h1> {{frage}} </h1>
         <div class="antwort">
-            <input type="text" placeholder="Eingabe...">
+            <input v-model="input" type="text" placeholder="Eingabe..." id="input" @keydown.enter="submit" autofocus>
         </div>
         <div class="button-container">
-            <button class="submit"> submit </button>
+            <button class="submit" @click="submit" > submit </button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'FragenCom'
+        name: 'FragenCom',
+
+        props: {
+            //"readonly"
+            frage: String,
+            antwort: String,
+            currentIndex: Number
+        },
+        
+        data() {
+            return {
+                
+            }
+        },
+
+        watch: {
+            frage() {
+                this.input = "";
+            }
+        },
+
+        methods: {
+            submit() {
+                const input = document.getElementById("input");
+
+                let value = input.value.toLowerCase().trim();
+                let antwort = this.antwort.toLowerCase().trim();
+
+                if(value === '') {
+                    alert("EYO Eingabe ist leer...");
+                } else if (value === antwort) {
+                    alert("YAY");
+                    this.$emit('richtig');
+                } else {
+                    alert("bro...")
+                }
+            }
+        }
     }
 </script>
 
@@ -76,5 +113,9 @@
         font-family: "Source Sans 3", sans-serif;
         font-weight: 600;
         cursor: pointer;
+    }
+
+    .submit:hover {
+        background-color: #0363ad;
     }
 </style>
