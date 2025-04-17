@@ -7,6 +7,7 @@
     @richtig="naechsteFrage"
     :frage="fragen[currentIndex].frage"
     :antwort="fragen[currentIndex].antwort"
+    :tipp="fragen[currentIndex].tipp"
     :currentIndex="currentIndex">
     </FragenCom>
 
@@ -33,19 +34,19 @@ export default {
     return {
       beginn: true,
       fragen: [
-        { frage: "RAM", antwort: "Random Access Memory" },
-        /*{ frage: "GPU", antwort: "Graphics Processing Unit"},
-        { frage: "KVM", antwort: "Keyboard Video Mouse" },
-        { frage: "APIPA", antwort: "Automatic Private IP Addressing" },
-        { frage: "PoE", antwort: "Power Over Ethernet" },
-        { frage: "TAS", antwort: "Tool assisted speedrun" },
-        { frage: "HTML", antwort: "Hypertext Markup Language" },
-        { frage: "Bit", antwort: "Binary Digit" },
-        { frage: "(Vue) CLI", antwort: "Command Line Interface" },
-        { frage: "CPU", antwort: "Central Processing Unit" },
-        { frage: "DNS", antwort: "Domain Name System" },
-        { frage: "IP", antwort: "Internet Protocol" },
-        { frage: "GUI", antwort: "Graphical User Interface" }*/
+        { frage: "RAM", antwort: "Random Access Memory", tipp: "Ran... Acc... Mem..." },
+        { frage: "GPU", antwort: "Graphics Processing Unit", tipp: "Gra... Pro... Uni..." },
+        { frage: "KVM", antwort: "Keyboard Video Mouse", tipp: "Key... Vid... Mou..." },
+        { frage: "APIPA", antwort: "Automatic Private IP Addressing", tipp: "Aut... Pri... IP Add..." },
+        { frage: "PoE", antwort: "Power Over Ethernet", tipp: "Pow... Ove... Eth..." },
+        { frage: "TAS", antwort: "Tool assisted speedrun", tipp: "Too... Ass... Spee..." },
+        { frage: "HTML", antwort: "Hypertext Markup Language", tipp: "Hyp... Mar... Lan..." },
+        { frage: "Bit", antwort: "Binary Digit", tipp: "Bin... Dig..." },
+        { frage: "(Vue) CLI", antwort: "Command Line Interface", tipp: "Comm... Lin... Int..." },
+        { frage: "CPU", antwort: "Central Processing Unit", tipp: "Cen... Pro... Uni..." },
+        { frage: "DNS", antwort: "Domain Name System", tipp: "Dom... Nam... Sys..." },
+        { frage: "IP", antwort: "Internet Protocol", tipp: "Int... Pro..." },
+        { frage: "GUI", antwort: "Graphical User Interface", tipp: "Gra... Use... Int..." }
       ],
       // => Insgesamt: 13
       // Funktioniert nicht, weil ich im data Block nicht auf andere data-Properties zugreifen kann mit this
@@ -113,7 +114,7 @@ p {
 }
 
 .again {
-  background-color: #86B324;
+  background-color: #EC7FA9;
   width: 1050px;
   height: 450px;
   border-radius: 60px 60px 80px 80px;
@@ -139,7 +140,7 @@ p {
   height: 100px;
   width: 300px;
   z-index: 1;
-  background-color: #a3ce45;
+  background-color: #db6291;
   border: none;
   color: white;
   font-size: 60px;
@@ -149,5 +150,9 @@ p {
   position: relative;
   top: 10px;
   border: 1px solid white;
+}
+
+.again > button:hover {
+  background-color: #d65687;
 }
 </style>

@@ -2,6 +2,8 @@
     <div class="frage">
         <h1> {{frage}} </h1>
         <div class="antwort">
+            <!-- &nbsp = Leerzeichen -->
+            <div class="hinweis" v-if="hinweis"> <b> Hinweis: </b> &nbsp {{ tipp }} </div>
             <input v-model="input" type="text" placeholder="Eingabe..." id="input" @keydown.enter="submit" autofocus>
         </div>
         <div class="button-container">
@@ -18,12 +20,15 @@
             //"readonly"
             frage: String,
             antwort: String,
+            tipp: String,
             currentIndex: Number
         },
         
         data() {
             return {
-                
+                locked: false,
+                falschCount: 0,
+                hinweis: false
             }
         },
 
@@ -35,18 +40,44 @@
 
         methods: {
             submit() {
+                if(this.locked) return;
+
                 const input = document.getElementById("input");
 
                 let value = input.value.toLowerCase().trim();
                 let antwort = this.antwort.toLowerCase().trim();
+                let frage = this.frage.toLowerCase().trim();
+                let tipp = this.tipp;
 
                 if(value === '') {
-                    alert("EYO Eingabe ist leer...");
+                    this.hinweis = false;
+                    this.falschCount = 0;
+
+                    input.style.border = '5px solid #FD5D5D';
+                    input.placeholder = "Eingabe ist leer >:(";
                 } else if (value === antwort) {
-                    alert("YAY");
-                    this.$emit('richtig');
+                    this.hinweis = false;
+                    this.falschCount = 0;
+
+                    this.locked = true;
+                    input.style.border = '5px solid #89AC46';
+
+                    setTimeout(() => {
+                        this.$emit('richtig');
+                        this.locked = false;
+                        input.style.border = 'none';
+                        input.placeholder = "Eingabe...";
+                    }, 900);
+                    
                 } else {
-                    alert("bro...")
+                    this.falschCount++;
+                    alert("Leider falsch!");
+                    input.style.border = '5px solid #FFBB64';
+                    input.placeholder = "Du schaffst das!";
+
+                    if(this.falschCount === 2) {
+                        this.hinweis = true;
+                    }
                 }
             }
         }
@@ -80,6 +111,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+    }
+
+    .hinweis {
+        position: relative;
+        bottom: 70px;
+        font-size: 30px;
     }
 
     input[type=text] {
