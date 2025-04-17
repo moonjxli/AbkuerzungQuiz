@@ -4,6 +4,7 @@
         <div class="antwort">
             <!-- &nbsp = Leerzeichen -->
             <div class="hinweis" v-if="hinweis"> <b> Hinweis: </b> &nbsp {{ tipp }} </div>
+            <div class="hinweis" v-if="hinweis2"> <b> Letzter Hinweis: </b> &nbsp {{ tipp2 }} </div>
             <input v-model="input" type="text" placeholder="Eingabe..." id="input" @keydown.enter="submit" autofocus>
         </div>
         <div class="button-container">
@@ -21,6 +22,7 @@
             frage: String,
             antwort: String,
             tipp: String,
+            tipp2: String,
             currentIndex: Number
         },
         
@@ -28,7 +30,8 @@
             return {
                 locked: false,
                 falschCount: 0,
-                hinweis: false
+                hinweis: false,
+                hinweis2: false
             }
         },
 
@@ -46,17 +49,35 @@
 
                 let value = input.value.toLowerCase().trim();
                 let antwort = this.antwort.toLowerCase().trim();
-                let frage = this.frage.toLowerCase().trim();
-                let tipp = this.tipp;
 
                 if(value === '') {
-                    this.hinweis = false;
-                    this.falschCount = 0;
+                    switch(this.falschCount) {
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            this.hinweis = true;
+                            break;
+                        case 3:
+                            this.hinweis = false;
+                            this.hinweis2 = true;
+                            break;
+                        default:
+                            this.hinweis = false;
+                            this.hinweis2 = true;
+                            alert("...");
+                            alert("okay...");
+                            alert("Meinetwegen...");
+                            alert("... Du darfst Google benutzen ...");
+                            break;
+                    }
 
                     input.style.border = '5px solid #FD5D5D';
                     input.placeholder = "Eingabe ist leer >:(";
                 } else if (value === antwort) {
                     this.hinweis = false;
+                    this.hinweis2 = false;
                     this.falschCount = 0;
 
                     this.locked = true;
@@ -71,13 +92,33 @@
                     
                 } else {
                     this.falschCount++;
+
+                    console.log(" wow " + this.falschCount);
                     alert("Leider falsch!");
                     input.style.border = '5px solid #FFBB64';
                     input.placeholder = "Du schaffst das!";
 
-                    if(this.falschCount === 2) {
-                        this.hinweis = true;
+                    switch(this.falschCount) {
+                        case 1:
+                            break;
+                        case 2:
+                            this.hinweis = true;
+                            break;
+                        case 3:
+                            this.hinweis = false;
+                            this.hinweis2 = true;
+                            break;
+                        default:
+                            this.hinweis = false;
+                            this.hinweis2 = true;
+                            alert("...");
+                            alert("okay...");
+                            alert("Meinetwegen...");
+                            alert("... Du darfst Google benutzen ...");
+                            break;
                     }
+
+                    
                 }
             }
         }

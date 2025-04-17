@@ -1,13 +1,14 @@
 <template>
   <h1> Abkürzung - Quiz </h1>
   <hr>
-  <p> Schreibe die Abkürzungen aus :) </p>
+  <p class="aufgabe"> Schreibe die Abkürzungen aus :) </p>
   <FragenCom
     v-if="beginn"
     @richtig="naechsteFrage"
     :frage="fragen[currentIndex].frage"
     :antwort="fragen[currentIndex].antwort"
     :tipp="fragen[currentIndex].tipp"
+    :tipp2="fragen[currentIndex].tipp2"
     :currentIndex="currentIndex">
     </FragenCom>
 
@@ -19,6 +20,8 @@
         <button @click="spiel"> JA </button>
       </div>
     </div>
+
+    <p class="coder"> made by Julia </p>
 </template>
 
 <script>
@@ -34,19 +37,19 @@ export default {
     return {
       beginn: true,
       fragen: [
-        { frage: "RAM", antwort: "Random Access Memory", tipp: "Ran... Acc... Mem..." },
-        { frage: "GPU", antwort: "Graphics Processing Unit", tipp: "Gra... Pro... Uni..." },
-        { frage: "KVM", antwort: "Keyboard Video Mouse", tipp: "Key... Vid... Mou..." },
-        { frage: "APIPA", antwort: "Automatic Private IP Addressing", tipp: "Aut... Pri... IP Add..." },
-        { frage: "PoE", antwort: "Power Over Ethernet", tipp: "Pow... Ove... Eth..." },
-        { frage: "TAS", antwort: "Tool assisted speedrun", tipp: "Too... Ass... Spee..." },
-        { frage: "HTML", antwort: "Hypertext Markup Language", tipp: "Hyp... Mar... Lan..." },
-        { frage: "Bit", antwort: "Binary Digit", tipp: "Bin... Dig..." },
-        { frage: "(Vue) CLI", antwort: "Command Line Interface", tipp: "Comm... Lin... Int..." },
-        { frage: "CPU", antwort: "Central Processing Unit", tipp: "Cen... Pro... Uni..." },
-        { frage: "DNS", antwort: "Domain Name System", tipp: "Dom... Nam... Sys..." },
-        { frage: "IP", antwort: "Internet Protocol", tipp: "Int... Pro..." },
-        { frage: "GUI", antwort: "Graphical User Interface", tipp: "Gra... Use... Int..." }
+        { frage: "RAM", antwort: "Random Access Memory", tipp: "Ran... Acc... Mem...", tipp2: "Rando... Acces... Memor..." },
+        { frage: "GPU", antwort: "Graphics Processing Unit", tipp: "Gra... Pro... Uni...", tipp2: "Graphics Processin... Uni..." },
+        { frage: "KVM", antwort: "Keyboard Video Mouse", tipp: "Key... Vid... Mou...", tipp2: "Keyboar... Vide... Mous..." },
+        { frage: "APIPA", antwort: "Automatic Private IP Addressing", tipp: "Aut... Pri... IP Add...", tipp2: "Automati... Privat... IP Addressin..." },
+        { frage: "PoE", antwort: "Power Over Ethernet", tipp: "Pow... Ove... Eth...", tipp2: "Powe... Ove... Etherne..." },
+        { frage: "TAS", antwort: "Tool assisted speedrun", tipp: "Too... Ass... Spee...", tipp2: "Tool... Assiste... Speedru..." },
+        { frage: "HTML", antwort: "Hypertext Markup Language", tipp: "Hyp... Mar... Lan...", tipp2: "Hypertex... Marku... Langua..." },
+        { frage: "Bit", antwort: "Binary Digit", tipp: "Bin... Dig...", tipp2: "Binar... Digi..." },
+        { frage: "(Vue) CLI", antwort: "Command Line Interface", tipp: "Comm... Lin... Int...", tipp2: "Comman... Line Interfac..." },
+        { frage: "CPU", antwort: "Central Processing Unit", tipp: "Cen... Pro... Uni...", tipp2: "Centra... Processin... Uni..." },
+        { frage: "DNS", antwort: "Domain Name System", tipp: "Dom... Nam... Sys...", tipp2: "Domai... Name Syste..." },
+        { frage: "IP", antwort: "Internet Protocol", tipp: "Int... Pro...", tipp2: "Interne... Protoco..." },
+        { frage: "GUI", antwort: "Graphical User Interface", tipp: "Gra... Use... Int...", tipp2: "Graphical Use... Interfac..." }
       ],
       // => Insgesamt: 13
       // Funktioniert nicht, weil ich im data Block nicht auf andere data-Properties zugreifen kann mit this
@@ -98,7 +101,7 @@ hr {
   width: 1050px;
 }
 
-p {
+.aufgabe {
   color: white;
   margin: 40px;
   font-size: 25px;
@@ -154,5 +157,11 @@ p {
 
 .again > button:hover {
   background-color: #d65687;
+}
+
+.coder {
+  position: absolute;
+  bottom: 0px;
+  color: white;
 }
 </style>
