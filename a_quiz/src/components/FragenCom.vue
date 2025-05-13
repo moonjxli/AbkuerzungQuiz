@@ -1,5 +1,5 @@
 <template>
-    <div class="frage">
+    <div class="frage-con">
         <h1> {{frage}} </h1>
         <div class="antwort">
             <!-- &nbsp = Leerzeichen -->
@@ -134,12 +134,13 @@
         top: 40px;
     }
 
-    .frage {
+    .frage-con {
         background-color: #F9F9F9;
         width: 1050px;
         height: 550px;
         border-radius: 80px;
         margin: auto;
+        position: relative;
     }
 
     .antwort {
@@ -148,11 +149,8 @@
         height: 450px;
         border-radius: 60px 60px 80px 80px;
         position: relative;
-        top: 45px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        top: 30px;
+        
     }
 
     .hinweis {
@@ -169,7 +167,7 @@
         font-size: 50px;
         padding-left: 50px;
         position: relative;
-        bottom: 20px;
+        top: 150px;
         outline: none;
     }
 

@@ -21,17 +21,21 @@
       </div>
     </div>
 
+    <NeuButton></NeuButton>
+
     <p class="coder"> made by Julia </p>
 </template>
 
 <script>
 
 import FragenCom from '@/components/FragenCom.vue';
+import NeuButton from './components/NeuButton.vue';
 
 export default {
   name: 'App',
   components: {
     FragenCom,
+    NeuButton
   },
   data() {
     return {
@@ -86,6 +90,10 @@ body {
   background-color: #2B2B2B;
   font-family: "Source Sans 3", sans-serif;
   text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -157,7 +165,9 @@ hr {
 
 .coder {
   position: absolute;
-  bottom: 0px;
+  top: 0;
+  left: 0;
   color: white;
+  margin: 10px;
 }
 </style>
