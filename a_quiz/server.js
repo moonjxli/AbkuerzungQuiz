@@ -20,6 +20,8 @@ const app = express(); //erstellt aus der express Funktion das Backend
 
 app.use(cors()); // Erlaubt alle Anfragen von allen Domänen ; kann man auch konfigurieren, sodass nur bestimmte Domänen erlaubt sind und aufs Backend zugreifen können
 
+app.use(express.json());
+
 /* Implementierung von einer Datenbank
 npm install pg-promise
 
@@ -76,6 +78,21 @@ app.get('/api/quiz', (req, res) => { //req - Request, res - Response ; nur GET-A
     res.status(500).json({ error: error.message });
     console.log("ERROR:", error);
   });
+});
+
+app.post('/api/quiz', (req, res) => {
+  const { frageNeu, antwortNeu, hinweisNeuEins, hinweisNeuZwei } = req.body;
+  console.log("Empfangen hehe: ", frageNeu, antwortNeu, hinweisNeuEins, hinweisNeuZwei);
+
+  const sql = 'INSERT INTO quiz (frage, antwort, tipp, tipp2) VALUES ($1,$2,$3,$4)';
+  db.none(sql, [frageNeu, antwortNeu, hinweisNeuEins, hinweisNeuZwei])
+    .then(() => {
+      res.json({ message: "Erfolgreich in der DB yaaay" });
+    })
+    .catch(err => {
+      console.error("Fehler beim Einfügen: ", err);
+      res.status(500).json({ error: "Fehler beim Einfügen" });
+    });
 });
 
 app.listen(3000, () => { //auf welchem Port soll der Server erreichbar sein; ohne app.listen läuft der Server nicht und wäre von außen nicht erreichbar

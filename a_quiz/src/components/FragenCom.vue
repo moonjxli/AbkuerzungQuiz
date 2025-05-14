@@ -141,10 +141,6 @@
     .bodyFragen { /* bezieht sich nur auf direkte Kinder, keine Auswirkung auf antwort oder submit */
         border: 10px solid brown;
 
-        display: box;
-
-        height: 100%;
-        
         margin: 0;
         padding: 0;
     }
@@ -157,12 +153,15 @@
         border: 5px solid rgb(0, 17, 255);
 
         margin: 0;
+
+        position: relative;
+        top: 50px;
     }
 
     .frage-con { /* Ist der weiße Kasten */
         background-color: #F9F9F9;
         width: 1050px;
-        min-height: 550px;
+        height: 550px;
         border-radius: 80px;
 
         border: 5px solid rgb(255, 0, 255);
@@ -184,18 +183,19 @@
 
         z-index: 1;
         position: relative;
-        top: 100px;
+        top: 115px;
 
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
 
         border: 5px solid rgb(0, 255, 221);
     }
 
     .hinweis {
-        /*position: relative;
-        bottom: 70px;*/
+        position: relative;
+        bottom: 70px;
         font-size: 30px;
     }
 
@@ -222,6 +222,10 @@
         width: 100%;
 
         border: 5px solid rgb(255, 81, 0);
+
+        z-index: 2;
+        position: relative;
+        top: 50px;
     }
 
     .submit {

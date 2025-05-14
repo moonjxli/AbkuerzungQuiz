@@ -22,7 +22,7 @@
       </div>
   </div>
 
-  <NeuButton></NeuButton>
+  <NeuButton @NEU="neueWoerter"></NeuButton>
 
   <p class="coder"> made by Julia </p>
 </template>
@@ -79,9 +79,35 @@ export default {
     spiel() {
       this.beginn = true;
       this.currentIndex = 0;
+    },
+    neueWoerter(payload) {
+      console.log(payload.frageNeu);
+      console.log(payload.antwortNeu);
+      console.log(payload.hinweisNeuEins);
+      console.log(payload.hinweisNeuZwei);
+      fetch('http://localhost:3000/api/quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(response => {
+          if(!response.ok) {
+            throw new Error('Fehler beim Senden der Daten')
+          }
+          return response.json();
+        })
+        .then(result => {
+          console.log("Es war Erfolgreich");
+        })
+        .catch(error => {
+          console.error("Fehler: ", error);
+      });
     }
   }
 }
+
 </script>
 
 <style>
