@@ -2,6 +2,7 @@
   <h1> Abkürzung - Quiz </h1>
   <hr>
   <p class="aufgabe"> Schreibe die Abkürzungen aus :) </p>
+  
   <FragenCom
     v-if="beginn"
     @richtig="naechsteFrage"
@@ -10,20 +11,20 @@
     :tipp="fragen[currentIndex]?.tipp"
     :tipp2="fragen[currentIndex]?.tipp2"
     :currentIndex="currentIndex">
-    </FragenCom>
+  </FragenCom>
 
-    <div v-else class="winscreen">
+  <div v-else class="winscreen">
       <p> GESCHAFFT! </p>
       <div class="again">
         <p> Jetzt hast du alle Abkürzungen drauf :) Weiter so! </p>
         <p> Du willst noch weiter lernen? Klick auf Ja! </p>
         <button @click="spiel"> JA </button>
       </div>
-    </div>
+  </div>
 
-    <NeuButton></NeuButton>
+  <NeuButton></NeuButton>
 
-    <p class="coder"> made by Julia </p>
+  <p class="coder"> made by Julia </p>
 </template>
 
 <script>
@@ -90,56 +91,76 @@ body {
   background-color: #2B2B2B;
   font-family: "Source Sans 3", sans-serif;
   text-align: center;
-  height: 100vh;
+  
+  min-height: 100dvh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
+h1 { /* Abkürzung - Quiz */
   color: white;
   font-size: 50px;
+
+  border: 5px solid red;
 }
 
-hr {
+hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   width: 1050px;
+
+  border: 5px solid red;
 }
 
-.aufgabe {
-  color: white;
+.aufgabe { /* Txt: Schreibe die Abkürzungen aus :) */
+  color: rgb(255, 255, 255);
   margin: 40px;
   font-size: 25px;
+
+  border: 5px solid red;
 }
 
-.winscreen {
+.winscreen { /* Kommt am Ende vom Quiz und ist der weiße Part */
   background-color: #F9F9F9;
   width: 1050px;
   height: 550px;
   border-radius: 80px;
   margin: auto;
   /*background-color: #B3DD55;*/
+
+  border: 5px solid red;
 }
 
-.again {
+.again { /* Kommt am Ende vom Quiz und ist der pinke Part mit dem Button */
   background-color: #EC7FA9;
   width: 1050px;
   height: 450px;
   border-radius: 60px 60px 80px 80px;
-  position: relative;
-  top: 45px;
+  font-weight: bold;
+
+  /*position: relative;
+  */
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-weight: bold;
+
+  border: 5px solid red;
 }
 
 .winscreen > p {
-  position: relative;
-  top: 50px;
+  /*position: relative;
+  top: 50px;*/
   font-size: 40px;
   color: black;
   font-weight: bold;
+
+  border: 5px solid red;
 }
 
 .again > button {
@@ -154,20 +175,24 @@ hr {
   font-family: "Source Sans 3", sans-serif;
   font-weight: 600;
   cursor: pointer;
-  position: relative;
-  top: 10px;
+  /* position: relative;
+  top: 10px; */
   border: 1px solid white;
+
+  border: 5px solid red;
 }
 
 .again > button:hover {
   background-color: #d65687;
 }
 
-.coder {
+.coder { /* made by Julia */
   position: absolute;
   top: 0;
   left: 0;
   color: white;
   margin: 10px;
+
+  border: 5px solid red;
 }
 </style>

@@ -1,15 +1,25 @@
 <template>
-    <div class="frage-con">
-        <h1> {{frage}} </h1>
-        <div class="antwort">
-            <!-- &nbsp = Leerzeichen -->
-            <div class="hinweis" v-if="hinweis"> <b> Hinweis: </b> &nbsp {{ tipp }} </div>
-            <div class="hinweis" v-if="hinweis2"> <b> Letzter Hinweis: </b> &nbsp {{ tipp2 }} </div>
-            <input v-model="input" type="text" placeholder="Eingabe..." id="input" @keydown.enter="submit" autofocus>
+    <div class="bodyFragen">
+
+        <div class="frage-con">
+            <h1> {{frage}} </h1> <!-- z.B. RAM -->
+
+            <div class="antwort"> <!-- Input vom User -->
+                <!-- &nbsp = Leerzeichen
+                     Falls der User Fehler macht, kommen die Hinweise -->
+                <div class="hinweis" v-if="hinweis"> <b> Hinweis: </b> &nbsp {{ tipp }} </div>
+                <div class="hinweis" v-if="hinweis2"> <b> Letzter Hinweis: </b> &nbsp {{ tipp2 }} </div>
+
+                <!-- Das Eingabe-Feld für den Input vom User -->
+                <input v-model="input" type="text" placeholder="Eingabe..." id="input" @keydown.enter="submit" autofocus>
+            </div>
+
+            <div class="button-container">
+                <!-- Submit Button, um den Input zu senden -->
+                <button class="submit" @click="submit" > submit </button>
+            </div>
         </div>
-        <div class="button-container">
-            <button class="submit" @click="submit" > submit </button>
-        </div>
+
     </div>
 </template>
 
@@ -128,34 +138,64 @@
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
+    .bodyFragen { /* bezieht sich nur auf direkte Kinder, keine Auswirkung auf antwort oder submit */
+        border: 10px solid brown;
+
+        display: box;
+
+        height: 100%;
+        
+        margin: 0;
+        padding: 0;
+    }
+
     h1 {
         color: black;
-        position: relative;
-        top: 40px;
+        /*position: relative;
+        top: 40px;*/
+
+        border: 5px solid rgb(0, 17, 255);
+
+        margin: 0;
     }
 
-    .frage-con {
+    .frage-con { /* Ist der weiße Kasten */
         background-color: #F9F9F9;
         width: 1050px;
-        height: 550px;
+        min-height: 550px;
         border-radius: 80px;
-        margin: auto;
-        position: relative;
+
+        border: 5px solid rgb(255, 0, 255);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        margin: 0;
+        padding: 0;
     }
 
-    .antwort {
+    .antwort { /* Ist der blaue Kasten */
         background-color: #5DBAFF;
         width: 1050px;
         height: 450px;
         border-radius: 60px 60px 80px 80px;
+
+        z-index: 1;
         position: relative;
-        top: 30px;
-        
+        top: 100px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 5px solid rgb(0, 255, 221);
     }
 
     .hinweis {
-        position: relative;
-        bottom: 70px;
+        /*position: relative;
+        bottom: 70px;*/
         font-size: 30px;
     }
 
@@ -166,23 +206,31 @@
         border: none;
         font-size: 50px;
         padding-left: 50px;
-        position: relative;
-        top: 150px;
+
+        background-color: rgb(255, 217, 0);
+
+        /*position: relative;
+        top: 150px;*/
+
         outline: none;
     }
 
     .button-container {
-        margin-top: -10px;
+        /*margin-top: -10px;
         display: flex;
-        justify-content: center;
+        justify-content: center;*/
         width: 100%;
+
+        border: 5px solid rgb(255, 81, 0);
     }
 
     .submit {
         border-radius: 30px;
         height: 100px;
         width: 300px;
-        z-index: 1;
+
+        /*z-index: 1;*/
+
         background-color: #006EC0;
         border: none;
         color: white;
@@ -192,7 +240,7 @@
         cursor: pointer;
     }
 
-    .submit:hover {
+    .submit:hover { /* Pseudo Klasse hover */
         background-color: #0363ad;
     }
 </style>
