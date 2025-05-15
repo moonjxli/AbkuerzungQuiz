@@ -132,22 +132,16 @@ body {
 h1 { /* Abkürzung - Quiz */
   color: white;
   font-size: 50px;
-
-  border: 5px solid red;
 }
 
 hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   width: 1050px;
-
-  border: 5px solid red;
 }
 
 .aufgabe { /* Txt: Schreibe die Abkürzungen aus :) */
   color: rgb(255, 255, 255);
   margin: 40px;
   font-size: 25px;
-
-  border: 5px solid red;
 }
 
 .winscreen { /* Kommt am Ende vom Quiz und ist der weiße Part */
@@ -156,9 +150,6 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   height: 550px;
   border-radius: 80px;
   margin: auto;
-  /*background-color: #B3DD55;*/
-
-  border: 5px solid red;
 }
 
 .again { /* Kommt am Ende vom Quiz und ist der pinke Part mit dem Button */
@@ -168,25 +159,17 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   border-radius: 60px 60px 80px 80px;
   font-weight: bold;
 
-  /*position: relative;
-  */
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  border: 5px solid red;
 }
 
 .winscreen > p {
-  /*position: relative;
-  top: 50px;*/
+  
   font-size: 40px;
   color: black;
   font-weight: bold;
-
-  border: 5px solid red;
 }
 
 .again > button {
@@ -201,11 +184,8 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   font-family: "Source Sans 3", sans-serif;
   font-weight: 600;
   cursor: pointer;
-  /* position: relative;
-  top: 10px; */
+  
   border: 1px solid white;
-
-  border: 5px solid red;
 }
 
 .again > button:hover {
@@ -218,7 +198,5 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   left: 0;
   color: white;
   margin: 10px;
-
-  border: 5px solid red;
 }
 </style>
