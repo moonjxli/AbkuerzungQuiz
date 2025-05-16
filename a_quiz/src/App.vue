@@ -2,8 +2,9 @@
   <h1> Abkürzung - Quiz </h1>
   <hr>
   <p class="aufgabe"> Schreibe die Abkürzungen aus :) </p>
-  
-  <FragenCom
+
+  <div class="fragen-wrapper">
+    <FragenCom
     v-if="beginn"
     @richtig="naechsteFrage"
     :frage="fragen[currentIndex]?.frage"
@@ -23,6 +24,7 @@
   </div>
 
   <NeuButton @NEU="neueWoerter"></NeuButton>
+  </div>
 
   <p class="coder"> made by Julia </p>
 </template>
@@ -50,14 +52,7 @@ export default {
     }
   },
   mounted() {
-    fetch('http://localhost:3000/api/quiz')
-    .then(res => res.json())
-    .then(data => {
-      this.fragen = data;
-    })
-    .catch(err => {
-      console.error('Fehler beim Laden der Fragen:', err);
-    });
+    this.ladeFragen();
   },
   //ähnlich wie data() nur dass hier eine Weiterverarbeitung passieren kann mit den Daten
   // und dann kann ich "currentIndex" als Variable benutzen für template oder so ...
@@ -68,6 +63,16 @@ export default {
   },*/
 
   methods: {
+    ladeFragen() {
+      fetch('http://localhost:3000/api/quiz')
+    .then(res => res.json())
+    .then(data => {
+      this.fragen = data;
+    })
+    .catch(err => {
+      console.error('Fehler beim Laden der Fragen:', err);
+    });
+    },
     naechsteFrage() {
         if (this.currentIndex < this.fragen.length - 1) {
             this.currentIndex++;
@@ -100,6 +105,7 @@ export default {
         })
         .then(result => {
           console.log("Es war Erfolgreich");
+          this.ladeFragen();
         })
         .catch(error => {
           console.error("Fehler: ", error);
@@ -138,6 +144,10 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   width: 1050px;
 }
 
+.fragen-wrapper {
+  position: relative;
+}
+
 .aufgabe { /* Txt: Schreibe die Abkürzungen aus :) */
   color: rgb(255, 255, 255);
   margin: 40px;
@@ -150,6 +160,10 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   height: 550px;
   border-radius: 80px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .again { /* Kommt am Ende vom Quiz und ist der pinke Part mit dem Button */
@@ -159,6 +173,14 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
   border-radius: 60px 60px 80px 80px;
   font-weight: bold;
 
+  position: relative;
+  top: 20px;
+
+  color: white;
+  font-size: 30px;
+  margin: 15px;
+  font-weight: bold;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,7 +188,8 @@ hr { /* Ist diese Linie unter "Abkürzung - Quiz" */
 }
 
 .winscreen > p {
-  
+  margin-top: 35px;
+  margin-bottom: 0;
   font-size: 40px;
   color: black;
   font-weight: bold;

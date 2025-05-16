@@ -104,14 +104,15 @@ export default {
     .neueWoerter {
         z-index: 3;
         
-        position: fixed;
-        bottom: 125px;
+        position: absolute;
+        bottom: 78px;
+        right: 2px;
 
         width: 1050px;
         height: 600px;
         border-radius: 80px;
 
-        background-color: #81B048;
+        background-color: #a5c261;
 
         display: flex;
         justify-content: center;
@@ -120,16 +121,18 @@ export default {
     }
 
     .schliessen {
-        background-color: red;
+        background-color: #e73e3e;
         color: white;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        
+        border: none;
+        position: relative;
+        bottom: 22px;
     }
 
     .schliessen:hover {
-        background-color: rgb(182, 14, 14);
+        background-color: #cf2c2c;
     }
 
     .NeuFrageAntwort > input[type=text] {
@@ -176,7 +179,11 @@ export default {
 
         z-index: 3;
 
-        background-color: #006EC0;
+        background-color: #738d37;
+
+        position: relative;
+        top: 35px;
+        
         border: none;
         color: white;
         font-size: 60px;
@@ -186,6 +193,6 @@ export default {
     }
 
     .submit:hover { /* Pseudo Klasse hover */
-        background-color: #0363ad;
+        background-color: #5a6e2a;
     }
 </style>
